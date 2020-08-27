@@ -42,6 +42,11 @@
   "Face for the directory icon"
   :group 'all-the-icons-faces)
 
+(defcustom all-the-icons-dired-tab-width 2
+  "The width of the icon area."
+  :group 'all-the-icons
+  :type 'number)
+
 (defcustom all-the-icons-dired-v-adjust 0.01
   "The default vertical adjustment of the icon in the dired buffer."
   :group 'all-the-icons
@@ -101,7 +106,7 @@
 (defun all-the-icons-dired--setup ()
   "Setup `all-the-icons-dired'."
   (when (derived-mode-p 'dired-mode)
-    (setq-local tab-width 1)
+    (setq-local tab-width all-the-icons-dired-tab-width)
     (advice-add 'dired-readin :around #'all-the-icons-dired--refresh-advice)
     (advice-add 'dired-revert :around #'all-the-icons-dired--refresh-advice)
     (advice-add 'dired-internal-do-deletions :around #'all-the-icons-dired--refresh-advice)
